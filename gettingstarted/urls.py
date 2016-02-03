@@ -1,16 +1,14 @@
-from django.conf.urls import include, url
-
+from django.conf.urls import patterns, url, include
 from django.contrib import admin
-admin.autodiscover()
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from django.views.generic import RedirectView
 
-import hello.views
+from hello.views import AboutView, create_model
 
-# Examples:
-# url(r'^$', 'gettingstarted.views.home', name='home'),
-# url(r'^blog/', include('blog.urls')),
 
-urlpatterns = [
-    url(r'^$', hello.views.index, name='index'),
-    url(r'^db', hello.views.db, name='db'),
-    url(r'^admin/', include(admin.site.urls)),
-]
+urlpatterns = patterns('',
+                       url(r'^$', AboutView.as_view(), name='index'),
+						url(r'^create_post/$', create_model),
+						(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.ico/')),)

@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i+acxn5(akgsn!sr4^qgf(^m&*@+g1@u^t@=8s@axc41ml*f=s'
+SECRET_KEY = "g!&u2k87sz_-y#(okqxyi_ek+x9e(fmcy++=n998k0#*+%e(@y"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'hello'
 )
 
@@ -95,6 +96,9 @@ USE_TZ = True
 # Parse database configuration from $DATABASE_URL
 DATABASES['default'] =  dj_database_url.config()
 
+DATABASES['default'] =  dj_database_url.config(default='postgres://max:domino@localhost/python_getting_started')
+
+
 # Enable Persistent Connections
 DATABASES['default']['CONN_MAX_AGE'] = 500
 
@@ -119,3 +123,5 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+# CRIPSY SETTINGS
+CRISPY_TEMPLATE_PACK = "bootstrap3"
