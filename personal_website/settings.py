@@ -56,7 +56,7 @@ ROOT_URLCONF = 'personal_website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(os.environ['HOME'], '.heroku/src/startbootstrap-freelancer'),],
+        'DIRS': [os.path.join(os.environ['HOME'], '.heroku/src/startbootstrap-freelancer/'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'debug': True,
