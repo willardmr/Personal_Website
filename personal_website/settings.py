@@ -56,7 +56,7 @@ ROOT_URLCONF = 'personal_website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(os.environ['LIBRARY_PATH'], 'startbootstrap-freelancer'),],
+        'DIRS': [os.path.join(os.environ['HOME'], '.heroku/src/startbootstrap-freelancer'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'debug': True,
@@ -116,7 +116,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     # os.path.join(BASE_DIR, 'static'),
-    os.path.join(os.environ['LIBRARY_PATH'], 'startbootstrap-freelancer/'),
+    os.path.join(os.environ['HOME'], '.heroku/src/startbootstrap-freelancer/'),
 )
 
 # Simplified static file serving.
