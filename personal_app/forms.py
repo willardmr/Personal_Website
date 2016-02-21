@@ -22,4 +22,5 @@ class SimpleModelForm(forms.ModelForm):
             )
         )
         super().__init__(*args, **kwargs)
+        self.helper.form_show_labels = False
         self.fields['value'].initial = random.randint(-100, 100)
