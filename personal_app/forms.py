@@ -15,7 +15,7 @@ class SimpleModelForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Fieldset(
-                'The above are database values',
+                'The above are database values.',
             ),
             ButtonHolder(
                 Submit('submit', 'Click Here!', css_class='button white')
