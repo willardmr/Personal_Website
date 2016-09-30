@@ -10,8 +10,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 import os
-import dj_database_url
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -57,7 +55,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(os.environ['HOME'],
-                 '.heroku/src/startbootstrap-freelancer/'), ],
+                 '/home/max/Documents/maxwellwillard/env/' +
+                              'src/startbootstrap-freelancer/'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'debug': True,
@@ -81,6 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'HOST': 'localhost',
     }
 }
 
@@ -95,14 +95,14 @@ USE_TZ = True
 
 
 # Parse database configuration from $DATABASE_URL
-DATABASES['default'] = dj_database_url.config()
+# DATABASES['default'] =  dj_database_url.config()
 
-DATABASES['default'] = dj_database_url.config(
-    default='postgres://max:domino@localhost/python_getting_started')
+# DATABASES['default'] =  dj_database_url.config(default=
+#    'postgres://max:domino@localhost/python_getting_started')
 
 
 # Enable Persistent Connections
-DATABASES['default']['CONN_MAX_AGE'] = 500
+# DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -118,7 +118,10 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     # os.path.join(BASE_DIR, 'static'),
-    os.path.join(os.environ['HOME'], '.heroku/src/startbootstrap-freelancer/'),
+    # os.path.join(os.environ['HOME'],
+    #    '.heroku/src/startbootstrap-freelancer/'),
+    '/home/max/Documents/maxwellwillard/env/src/startbootstrap-freelancer/',
+
 )
 
 # Simplified static file serving.

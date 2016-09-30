@@ -1,16 +1,19 @@
-from django.http import HttpResponseRedirect, HttpResponse
+import json
+from django.http import HttpResponse
 from django.http import Http404
-from django.core.urlresolvers import reverse
-from django.template import loader, Context
 from django.views.generic import TemplateView
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.csrf import csrf_protect
 from django.core.serializers.json import DjangoJSONEncoder
 from .forms import SimpleModelForm
 from .models import SimpleModel
-import json
+
 
 class AboutView(TemplateView):
+    """
+    Index page. Include model form.
+    """
     template_name = "index.html"
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         form = SimpleModelForm()
@@ -18,10 +21,14 @@ class AboutView(TemplateView):
         context['models'] = SimpleModel.objects.all()
         return context
 
+
 @csrf_protect
 def create_model(request):
+    """
+    Ajax view allowing javascript calls to create new
+    SimpleModel objects
+    """
     if request.method == 'POST':
-        response_data = {}
         value = int(request.POST.get('the_post'))
         if value == '':
             value = 0
@@ -30,7 +37,9 @@ def create_model(request):
             SimpleModel.objects.create(value=value)
 
         return HttpResponse(
-            json.dumps(list(SimpleModel.objects.all().values_list('value',)), cls=DjangoJSONEncoder),
+            json.dumps(
+                list(SimpleModel.objects.all().values_list('value',)),
+                cls=DjangoJSONEncoder),
             content_type="application/json"
         )
     else:
